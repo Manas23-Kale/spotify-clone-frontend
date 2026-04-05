@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login - Spotify Clone</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <body class="authPage"></body>
+
+<div class="authContainer">
+
+    <h1>Spotify Clone</h1>
+
+    <div class="authBox">
+
+        <h2 id="formTitle">Login</h2>
+
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+
+        <button onclick="handleAuth()">Login</button>
+
+        <p id="toggleText">
+            Don't have an account?
+            <span onclick="toggleMode()">Sign up</span>
+        </p>
+
+    </div>
+
+</div>
+
+<script src="auth.js"></script>
+
+</body>
+</html>

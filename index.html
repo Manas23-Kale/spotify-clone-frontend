@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Spotify Clone</title>
+
+<link rel="stylesheet" href="style.css">
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+<body class="mainApp"></body>
+<div class="container">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+        <h2 class="logo">Spotify Clone</h2>
+
+        <ul class="menu">
+            <li onclick="showHome()">
+                <i class="fa-solid fa-house"></i> Home
+            </li>
+
+            <li onclick="openSearch()">
+                <i class="fa-solid fa-magnifying-glass"></i> Search
+            </li>
+
+            <li onclick="openLibrary()">
+    <i class="fa-solid fa-book"></i> Your Library
+</li>
+     <li onclick="logout()">
+    <i class="fa-solid fa-right-from-bracket"></i> Logout
+</li>   </ul>
+
+        <hr>
+
+        <!-- PLAYLIST SECTION -->
+        <div class="playlistSection">
+
+            <h3>Your Playlists</h3>
+
+            <button onclick="createPlaylist()" class="createBtn">
+                + Create Playlist
+            </button>
+
+            <ul id="playlistContainer">
+                <li style="color:gray;">No playlists yet</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- MAIN -->
+    <div class="main">
+
+        <!-- TOP BAR -->
+        <div class="topBar">
+            <input
+                type="text"
+                placeholder="What do you want to play?"
+                class="topSearch"
+                onkeyup="handleSearch(event)"
+            >
+        </div>
+
+
+        <!-- HOME -->
+        <div id="homePage">
+
+            <!-- RECENTLY PLAYED -->
+            <h1>Recently Played</h1>
+
+            <div class="cards" id="recentSongs">
+                <p style="color:gray;">No songs played yet</p>
+            </div>
+
+            <!-- TRENDING -->
+            <h1>Trending Songs</h1>
+
+            <div class="cards" id="trendingSongs">
+
+                <div class="card">
+                    <img src="https://picsum.photos/200?1">
+                    <h3>DJ Snake ft. Justin Bieber - Let Me Love You</h3>
+                    <p>Artist</p>
+                </div>
+
+                <div class="card">
+                    <img src="https://picsum.photos/200?2">
+                    <h3>Ed Sheeran - Sapphire</h3>
+                    <p>Artist</p>
+                </div>
+
+                <div class="card">
+                    <img src="https://picsum.photos/200?3">
+                    <h3>One Direction - Night Changes</h3>
+                    <p>Artist</p>
+                </div>
+
+                <div class="card">
+                    <img src="https://picsum.photos/200?4">
+                    <h3>The Kid LAROI, Justin Bieber - STAY</h3>
+                    <p>Artist</p>
+                </div>
+
+            </div>
+
+        </div>
+<!-- POPULAR ARTISTS -->
+<h1>Popular Artists</h1>
+
+<div class="cards">
+
+    <div class="card">
+        <img src="https://picsum.photos/200?5">
+        <h3>Arijit Singh</h3>
+        <p>Artist</p>
+    </div>
+
+    <div class="card">
+        <img src="https://picsum.photos/200?6">
+        <h3>Shreya Ghoshal</h3>
+        <p>Artist</p>
+    </div>
+
+    <div class="card">
+        <img src="https://picsum.photos/200?7">
+        <h3>AP Dhillon</h3>
+        <p>Artist</p>
+    </div>
+
+    <div class="card">
+        <img src="https://picsum.photos/200?8">
+        <h3>Divine</h3>
+        <p>Artist</p>
+    </div>
+
+</div>
+
+<!-- FEATURED PLAYLISTS -->
+<h1>Featured Playlists</h1>
+
+<div class="cards">
+
+    <div class="card">
+        <img src="https://picsum.photos/200?9">
+        <h3>Top Hits</h3>
+        <p>Best of today</p>
+    </div>
+
+    <div class="card">
+        <img src="https://picsum.photos/200?10">
+        <h3>Chill Vibes</h3>
+        <p>Relax & enjoy</p>
+    </div>
+
+    <div class="card">
+        <img src="https://picsum.photos/200?11">
+        <h3>Workout Mix</h3>
+        <p>Energy boost</p>
+    </div>
+
+    <div class="card">
+        <img src="https://picsum.photos/200?12">
+        <h3>Lo-Fi Beats</h3>
+        <p>Focus music</p>
+    </div>
+
+</div>
+
+        <!-- SEARCH PAGE -->
+        <div id="searchPage" style="display:none;">
+
+            <h1>Search Results</h1>
+
+            <!-- 🔥 shows playlist name -->
+            <p id="playlistTitle" style="color:#b3b3b3;"></p>
+
+            <div class="cards" id="searchResults"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= PLAYER ================= -->
+
+<div class="bottomPlayer">
+
+    <!-- SONG INFO -->
+    <div class="songInfo">
+
+        <img id="cover" src="https://via.placeholder.com/50">
+
+        <div>
+            <p id="songName">No song selected</p>
+            <p id="artistName" style="font-size:12px; color:gray;">---</p>
+
+            <div class="wave" id="wave" style="display:none;">
+                <span></span><span></span><span></span><span></span>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- CONTROLS -->
+    <div class="controls">
+
+        <button onclick="prevSong()">
+            <i class="fa-solid fa-backward"></i>
+        </button>
+
+        <button onclick="togglePlay()" id="playBtn">
+            <i class="fa-solid fa-play"></i>
+        </button>
+
+        <button onclick="nextSong()">
+            <i class="fa-solid fa-forward"></i>
+        </button>
+
+    </div>
+
+
+    <!-- PROGRESS + TIMER -->
+    <div class="progressContainer">
+
+        <span id="currentTime">0:00</span>
+
+        <input type="range" id="progressBar" value="0">
+
+        <span id="duration">0:00</span>
+
+    </div>
+
+
+    <!-- VOLUME -->
+    <div class="volumeControl">
+        <i class="fa-solid fa-volume-high"></i>
+
+        <input
+            type="range"
+            id="volumeBar"
+            min="0"
+            max="1"
+            step="0.01"
+            value="1"
+        >
+    </div>
+
+    <!-- AUDIO -->
+    <audio id="song"></audio>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
